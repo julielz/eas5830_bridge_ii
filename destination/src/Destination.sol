@@ -25,7 +25,7 @@ contract Destination is AccessControl {
 	function wrap(address _underlying_token, address _recipient, uint256 _amount ) public onlyRole(WARDEN_ROLE) {
 		//YOUR CODE HERE
     // look up the wrapped token for this underlying token
-		address wrapped = underlying_tokens[_underlying_token];
+		address wrapped = wrapped_tokens[_underlying_token];
 		require(wrapped != address(0), "Token not registered");
 
 		// mint the specified amount of tokens, to the recipient
@@ -54,7 +54,7 @@ contract Destination is AccessControl {
 		require(underlying_tokens[_underlying_token] == address(0), "Token already registered");
 
 		// deploy a new BridgeToken contract
-		BridgeToken newToken = new BridgeToken(_underlying_token, name, symbol);
+		BridgeToken newToken = new BridgeToken(_underlying_token, name, symbol, address(this));
 		address wrapped = address(newToken);
 
 		// store the mapping between the underlying and wrapped token
