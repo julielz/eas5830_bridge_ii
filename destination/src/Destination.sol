@@ -58,8 +58,8 @@ contract Destination is AccessControl {
 		address wrapped = address(newToken);
 
 		// store the mapping between the underlying and wrapped token
-		underlying_tokens[_underlying_token] = wrapped;
-		wrapped_tokens[wrapped] = _underlying_token;
+		wrapped_tokens[_underlying_token] = wrapped;
+		underlying_tokens[wrapped] = _underlying_token;
 		tokens.push(wrapped);
 
 		// emit a Creation event
