@@ -25,7 +25,7 @@ contract Destination is AccessControl {
 	function wrap(address _underlying_token, address _recipient, uint256 _amount ) public onlyRole(WARDEN_ROLE) {
 		//YOUR CODE HERE
     // look up the wrapped token for this underlying token
-		address wrapped = wrapped_tokens[_underlying_token];
+		address wrapped = underlying_tokens[_underlying_token];
 		require(wrapped != address(0), "Token not registered");
 
 		// mint the specified amount of tokens, to the recipient
